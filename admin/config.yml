@@ -1,8 +1,8 @@
 backend:
   name: github
-  repo: TU_USUARIO_GITHUB/NOMBRE_DE_TU_REPOSITORIO
+  repo: coparg/copa
   branch: main
-  base_url: https://sveltia-cms-auth.vercel.app # Proxy público y gratuito para OAuth de Decap CMS
+  base_url: https://sveltia-cms-auth.vercel.app
 
 media_folder: "assets/images/uploads"
 public_folder: "assets/images/uploads"
