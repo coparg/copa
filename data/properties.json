@@ -9,9 +9,9 @@
       "description": "Departamentos Vacacionales & Locales",
       "albums": [
         {
-          "title": "Áreas Comunes",
+          "title": "Exterior",
           "images": [
-            "img/PHOTO-2026-01-22-16-23-58 10.jpg"
+            "img/PHOTO-2026-01-22-16-23-58.jpg"
           ]
         },
         {
@@ -29,9 +29,9 @@
           ]
         },
         {
-          "title": "Exterior",
+          "title": "Áreas Comunes",
           "images": [
-            "img/PHOTO-2026-01-22-16-23-58.jpg"
+            "img/PHOTO-2026-01-22-16-23-58 10.jpg"
           ]
         }
       ]
