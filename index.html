@@ -229,7 +229,7 @@
         let propertiesData = [];
 
         // Cargamos los datos del JSON para evitar errores de sintaxis en HTML
-        fetch('/data/properties.json')
+        fetch('data/properties.json')
             .then(res => res.json())
             .then(data => {
                 propertiesData = data;
