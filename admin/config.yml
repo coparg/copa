@@ -3,6 +3,7 @@ backend:
   repo: coparg/copa
   branch: main
   base_url: https://copa-auth.copacabanapinamar.workers.dev
+  site_url: https://copa-1wa.pages.dev
 
 media_folder: "assets/images/uploads"
 public_folder: "assets/images/uploads"
