@@ -228,17 +228,18 @@
     <script>
         let propertiesData = [];
 
-        // Cargamos los datos del JSON para evitar errores de sintaxis en HTML
+        // Cargamos los datos del JSON (Soporta tanto array directo como formato agrupado Decap CMS)
         fetch('data/properties.json')
             .then(res => res.json())
             .then(data => {
-                propertiesData = data;
+                propertiesData = Array.isArray(data) ? data : (data.properties || []);
                 renderProperties();
             })
             .catch(err => console.error('Error cargando las propiedades:', err));
 
         function renderProperties() {
             const container = document.getElementById('propertiesContainer');
+            if (!container) return;
             container.innerHTML = propertiesData.map((prop, idx) => `
                 <div class="prop-card" onclick="openGallery(${idx})">
                     <div>
@@ -255,17 +256,23 @@
 
         function openGallery(index) {
             const prop = propertiesData[index];
+            if (!prop) return;
+            
             document.getElementById('modalTitle').textContent = `${prop.title} — ${prop.city}`;
             const container = document.getElementById('modalAlbums');
             
-            container.innerHTML = prop.albums.map(album => `
-                <div class="album-section">
-                    <h4 class="album-title">${album.title}</h4>
-                    <div class="gallery-grid">
-                        ${album.images.map(img => `<img src="${img}" alt="${album.title}" onclick="zoomImage('${img}')">`).join('')}
+            if (prop.albums && prop.albums.length > 0) {
+                container.innerHTML = prop.albums.map(album => `
+                    <div class="album-section">
+                        <h4 class="album-title">${album.title}</h4>
+                        <div class="gallery-grid">
+                            ${(album.images || []).map(img => `<img src="${img}" alt="${album.title}" onclick="zoomImage('${img}')">`).join('')}
+                        </div>
                     </div>
-                </div>
-            `).join('');
+                `).join('');
+            } else {
+                container.innerHTML = '<p style="color: var(--text-muted); font-size: 11px;">No hay álbumes o imágenes disponibles.</p>';
+            }
             
             document.getElementById('galleryModal').style.display = 'flex';
         }
