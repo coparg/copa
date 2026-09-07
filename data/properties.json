@@ -10,17 +10,20 @@
       "albums": [
         {
           "title": "Áreas Comunes",
-          "images": [
-            "img/PHOTO-2026-01-22-16-23-58.jpg",
-            "img/PHOTO-2026-01-22-16-23-58 2.jpg"
-          ]
+          "images": []
         },
         {
-          "title": "Departamentos",
+          "title": "Departamento 1 Dormitorio",
           "images": [
+            "img/PHOTO-2026-01-22-16-23-58 2.jpg",
+            "img/PHOTO-2026-01-22-16-23-58 6.jpg",
             "img/PHOTO-2026-01-22-16-23-58 3.jpg",
             "img/PHOTO-2026-01-22-16-23-58 4.jpg",
-            "img/PHOTO-2026-01-22-16-23-58 5.jpg"
+            "img/PHOTO-2026-01-22-16-23-58 8.jpg",
+            "img/PHOTO-2026-01-22-16-23-58 7.jpg",
+            "img/PHOTO-2026-01-22-16-23-58 9.jpg",
+            "img/PHOTO-2026-01-22-16-23-58 5.jpg",
+            "img/PHOTO-2026-01-22-16-23-58 8.jpg"
           ]
         },
         {
