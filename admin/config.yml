@@ -1,0 +1,36 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "img"
+public_folder: "/img"
+
+collections:
+  - name: "propiedades"
+    label: "Propiedades"
+    files:
+      - file: "data/properties.json"
+        label: "Lista de Propiedades"
+        name: "properties_list"
+        json_metadata:
+          path: ""
+        fields:
+          - label: "Propiedades"
+            name: ""
+            widget: "list"
+            fields:
+              - { label: "ID", name: "id", widget: "string" }
+              - { label: "Título de Tarjeta", name: "title", widget: "string" }
+              - { label: "Nombre Proyecto", name: "name", widget: "string" }
+              - { label: "Ciudad", name: "city", widget: "string" }
+              - { label: "Dirección", name: "address", widget: "string" }
+              - { label: "Descripción Corta", name: "description", widget: "string" }
+              - label: "Álbumes / Secciones"
+                name: "albums"
+                widget: "list"
+                fields:
+                  - { label: "Nombre del Álbum (Ej: Áreas Comunes, Exterior, etc.)", name: "title", widget: "string" }
+                  - label: "Fotografías"
+                    name: "images"
+                    widget: "list"
+                    field: { label: "Imagen", name: "image", widget: "image" }
