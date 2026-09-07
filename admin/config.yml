@@ -2,33 +2,37 @@ backend:
   name: git-gateway
   branch: main
 
-media_folder: "img"
-public_folder: "img"
+media_folder: "assets/images/uploads"
+public_folder: "assets/images/uploads"
 
 collections:
-  - name: "propiedades"
+  - name: "properties"
     label: "Propiedades"
     files:
       - file: "data/properties.json"
         label: "Lista de Propiedades"
-        name: "properties_list"
+        name: "properties_file"
         fields:
           - label: "Propiedades"
             name: "properties"
             widget: "list"
+            summary: '{{fields.name}} - {{fields.city}}'
             fields:
-              - { label: "ID", name: "id", widget: "string" }
-              - { label: "Título de Tarjeta", name: "title", widget: "string" }
-              - { label: "Nombre Proyecto", name: "name", widget: "string" }
+              - { label: "Nombre", name: "name", widget: "string" }
+              - { label: "Título / Subtítulo", name: "title", widget: "string" }
               - { label: "Ciudad", name: "city", widget: "string" }
               - { label: "Dirección", name: "address", widget: "string" }
-              - { label: "Descripción Corta", name: "description", widget: "string" }
-              - label: "Álbumes / Secciones"
+              - { label: "Descripción Corta", name: "description", widget: "text" }
+              - label: "Álbumes de Fotos"
                 name: "albums"
                 widget: "list"
+                summary: '{{fields.title}}'
                 fields:
-                  - { label: "Nombre del Álbum", name: "title", widget: "string" }
-                  - label: "Fotografías"
+                  - { label: "Título del Álbum", name: "title", widget: "string" }
+                  - label: "Imágenes del Álbum"
                     name: "images"
                     widget: "list"
-                    field: { label: "Imagen", name: "image", widget: "image" }
+                    summary: '{{fields.caption}}'
+                    fields:
+                      - { label: "Imagen", name: "image", widget: "image" }
+                      - { label: "Descripción / Pie de foto (opcional)", name: "caption", widget: "string", required: false }
