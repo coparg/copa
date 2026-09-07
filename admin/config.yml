@@ -3,7 +3,7 @@ backend:
   branch: main
 
 media_folder: "img"
-public_folder: "/img"
+public_folder: "img"
 
 collections:
   - name: "propiedades"
@@ -12,11 +12,9 @@ collections:
       - file: "data/properties.json"
         label: "Lista de Propiedades"
         name: "properties_list"
-        json_metadata:
-          path: ""
         fields:
           - label: "Propiedades"
-            name: ""
+            name: "properties"
             widget: "list"
             fields:
               - { label: "ID", name: "id", widget: "string" }
@@ -29,7 +27,7 @@ collections:
                 name: "albums"
                 widget: "list"
                 fields:
-                  - { label: "Nombre del Álbum (Ej: Áreas Comunes, Exterior, etc.)", name: "title", widget: "string" }
+                  - { label: "Nombre del Álbum", name: "title", widget: "string" }
                   - label: "Fotografías"
                     name: "images"
                     widget: "list"
