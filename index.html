@@ -9,7 +9,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
     <style>
         :root {
@@ -118,6 +117,25 @@
         .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; }
         .gallery-grid img { width: 100%; height: 120px; object-fit: cover; border-radius: 8px; border: 1px solid var(--border-color); cursor: pointer; transition: transform 0.2s ease, border-color 0.2s ease; }
         .gallery-grid img:hover { transform: scale(1.03); border-color: var(--accent-gold); }
+
+        /* TARJETA TEMPORAL DE PROYECTO SIN FOTOS */
+        .placeholder-card {
+            background: linear-gradient(135deg, #0d121d 0%, #05070a 100%);
+            border: 1px solid var(--border-gold);
+            border-radius: 8px;
+            height: 120px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            text-align: center;
+            box-shadow: inset 0 0 15px rgba(197, 160, 89, 0.05);
+        }
+        .placeholder-card svg { width: 28px; height: 28px; stroke: var(--accent-gold); fill: none; stroke-width: 1.5; margin-bottom: 6px; }
+        .placeholder-brand { font-size: 8px; letter-spacing: 2px; color: var(--text-light); text-transform: uppercase; font-weight: 600; }
+        .placeholder-title { font-size: 9px; letter-spacing: 1px; color: var(--accent-gold); text-transform: uppercase; font-weight: 500; margin-top: 2px; }
+        .placeholder-tag { font-size: 7.5px; color: var(--text-muted); margin-top: 4px; font-style: italic; }
 
         /* LIGHTBOX PARA VER FOTO AMPLIADA */
         .lightbox { display: none; position: fixed; z-index: 20000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.95); justify-content: center; align-items: center; cursor: zoom-out; }
@@ -245,33 +263,77 @@
                     <div>
                         <div class="mini-icon"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 18h6M9 14h6M9 10h6"/></svg></div>
                         <div class="prop-main-brand">Copacabana</div>
-                        <div class="prop-project-name">${prop.name}</div>
-                        <div class="prop-city-subtle">${prop.city}</div>
-                        <div class="prop-address-height">${prop.address}</div>
+                        <div class="prop-project-name">${prop.name || 'Propiedad'}</div>
+                        <div class="prop-city-subtle">${prop.city || ''}</div>
+                        <div class="prop-address-height">${prop.address || ''}</div>
                     </div>
-                    <div class="prop-desc">${prop.description}</div>
+                    <div class="prop-desc">${prop.description || ''}</div>
                 </div>
             `).join('');
+        }
+
+        function createPlaceholderHTML(projectName) {
+            return `
+                <div class="placeholder-card">
+                    <svg viewBox="0 0 100 100">
+                        <path d="M 70,25 C 40,25 25,40 25,50 C 25,60 40,75 70,75" />
+                        <path d="M 75,35 C 50,35 37,45 37,50 C 37,55 50,65 75,65" />
+                        <line x1="25" y1="50" x2="75" y2="50" stroke-dasharray="2,4" />
+                    </svg>
+                    <div class="placeholder-brand">Copacabana</div>
+                    <div class="placeholder-title">${projectName}</div>
+                    <div class="placeholder-tag">Galería en actualización</div>
+                </div>
+            `;
         }
 
         function openGallery(index) {
             const prop = propertiesData[index];
             if (!prop) return;
             
-            document.getElementById('modalTitle').textContent = `${prop.title} — ${prop.city}`;
+            document.getElementById('modalTitle').textContent = `${prop.title || prop.name} — ${prop.city || ''}`;
             const container = document.getElementById('modalAlbums');
             
+            let hasImages = false;
+
             if (prop.albums && prop.albums.length > 0) {
-                container.innerHTML = prop.albums.map(album => `
+                const albumsHTML = prop.albums.map(album => {
+                    const images = album.images || [];
+                    if (images.length > 0) {
+                        hasImages = true;
+                        return `
+                            <div class="album-section">
+                                <h4 class="album-title">${album.title || 'Álbum'}</h4>
+                                <div class="gallery-grid">
+                                    ${images.map(imgItem => {
+                                        const src = typeof imgItem === 'object' ? imgItem.image : imgItem;
+                                        return `<img src="${src}" alt="${album.title}" onclick="zoomImage('${src}')">`;
+                                    }).join('')}
+                                </div>
+                            </div>
+                        `;
+                    } else {
+                        return `
+                            <div class="album-section">
+                                <h4 class="album-title">${album.title || 'Álbum'}</h4>
+                                <div class="gallery-grid">
+                                    ${createPlaceholderHTML(prop.name)}
+                                </div>
+                            </div>
+                        `;
+                    }
+                }).join('');
+
+                container.innerHTML = albumsHTML;
+            } else {
+                container.innerHTML = `
                     <div class="album-section">
-                        <h4 class="album-title">${album.title}</h4>
+                        <h4 class="album-title">Próximamente</h4>
                         <div class="gallery-grid">
-                            ${(album.images || []).map(img => `<img src="${img}" alt="${album.title}" onclick="zoomImage('${img}')">`).join('')}
+                            ${createPlaceholderHTML(prop.name)}
                         </div>
                     </div>
-                `).join('');
-            } else {
-                container.innerHTML = '<p style="color: var(--text-muted); font-size: 11px;">No hay álbumes o imágenes disponibles.</p>';
+                `;
             }
             
             document.getElementById('galleryModal').style.display = 'flex';
@@ -314,12 +376,6 @@
             if (bgAudio.paused || bgAudio.muted) { bgAudio.muted = false; bgAudio.play(); updateUI(true); } 
             else { bgAudio.pause(); updateUI(false); }
         });
-
-        if (window.netlifyIdentity) {
-            window.netlifyIdentity.on("init", user => {
-                if (!user) { window.netlifyIdentity.on("login", () => { document.location.href = "/admin/"; }); }
-            });
-        }
     </script>
 </body>
 </html>
