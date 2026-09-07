@@ -2,7 +2,7 @@ backend:
   name: github
   repo: coparg/copa
   branch: main
-  base_url: https://sveltia-cms-auth.vercel.app
+  base_url: https://sveltia-cms-auth.sveltia.dev
 
 media_folder: "assets/images/uploads"
 public_folder: "assets/images/uploads"
