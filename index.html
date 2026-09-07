@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Copacabana Real Estate & Hospitality — Identity System</title>
+    
+    <!-- FAVICON / LOGO EN LA PESTAÑA DEL NAVEGADOR -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M 70,25 C 40,25 25,40 25,50 C 25,60 40,75 70,75' stroke='%23c5a059' stroke-width='6' fill='none'/><path d='M 75,35 C 50,35 37,45 37,50 C 37,55 50,65 75,65' stroke='%23c5a059' stroke-width='6' fill='none'/><line x1='25' y1='50' x2='75' y2='50' stroke='%23c5a059' stroke-width='4' stroke-dasharray='2,4'/></svg>">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-dark: #07080d;
+            --card-bg: #0b0e17;
+            --accent-gold: #c5a059;
+            --soft-gold: #dfc185;
+            --gold-glow: rgba(197, 160, 89, 0.12);
+            --text-light: #ffffff;
+            --text-muted: #8a99ad;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --border-gold: rgba(197, 160, 89, 0.35);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            font-family: 'Montserrat', sans-serif;
+            padding: 40px 20px 80px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            line-height: 1.5;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(18, 26, 45, 0.6) 0%, transparent 60%),
+                radial-gradient(circle at 50% 100%, rgba(10, 13, 20, 0.8) 0%, transparent 50%);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1100px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* CONTROL FLOTANTE DE AUDIO */
+        .audio-player-widget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 9999;
+            background: rgba(11, 14, 23, 0.85);
+            border: 1px solid var(--border-gold);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 8px 16px;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .audio-player-widget:active {
+            transform: scale(0.96);
+        }
+
+        .music-btn {
+            background: none;
+            border: none;
+            color: var(--accent-gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            outline: none;
+        }
+
+        .music-btn svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
+
+        .music-status {
+            font-size: 9px;
+            letter-spacing: 1.5px;
+            color: var(--soft-gold);
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        /* PRESENTACIÓN PRINCIPAL - OCUPA AL MENOS EL 60% DE LA PANTALLA EN DESKTOP/LAPTOP */
+        .brand-presentation {
+            background: radial-gradient(circle at center, #131c31 0%, #080b12 100%);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            margin-bottom: 45px;
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        @media (min-width: 992px) {
+            .brand-presentation {
+                min-height: 60vh; /* Ocupa al menos el 60% del alto de la pantalla */
+            }
+        }
+
+        .brand-icon {
+            width: 64px;
+            height: 64px;
+            margin-bottom: 25px;
+            filter: drop-shadow(0 4px 12px rgba(197, 160, 89, 0.3));
+        }
+
+        .brand-icon svg {
+            width: 100%;
+            height: 100%;
+            fill: none;
+            stroke: var(--accent-gold);
+            stroke-width: 1.8;
+            stroke-linecap: round;
+        }
+
+        /* TIPOGRAFÍA SEGÚN ARCHIVO ADJUNTO (MONTSERRAT REGULAR/SEMIBOLD) */
+        .brand-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(26px, 4.5vw, 48px);
+            font-weight: 600; /* Peso refinado y no tan grueso */
+            letter-spacing: clamp(8px, 2vw, 20px);
+            color: var(--text-light);
+            text-transform: uppercase;
+            line-height: 1.1;
+            text-align: center;
+            width: 100%;
+            padding-left: clamp(8px, 2vw, 20px); /* Compensación para centrado exacto */
+        }
+
+        .brand-tagline {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(9px, 1.2vw, 12px);
+            font-weight: 400;
+            letter-spacing: clamp(4px, 1vw, 8px);
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            margin-top: 20px;
+            text-align: center;
+            width: 100%;
+            padding-left: clamp(4px, 1vw, 8px);
+        }
+
+        /* ENCABEZADOS DE SECCIÓN */
+        .section-header {
+            text-align: center;
+            margin-bottom: 25px;
+            width: 100%;
+        }
+
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(11px, 1.8vw, 14px);
+            font-weight: 600;
+            letter-spacing: 3px;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            display: inline-block;
+            position: relative;
+            padding-bottom: 8px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 25%;
+            right: 25%;
+            height: 1px;
+            background: var(--accent-gold);
+            opacity: 0.5;
+        }
+
+        /* GRID PROPIEDADES */
+        .sub-properties {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 45px;
+            width: 100%;
+        }
+
+        .prop-card {
+            background: linear-gradient(145deg, #0e1422, #080b12);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px 14px;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .prop-card:hover {
+            border-color: var(--accent-gold);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.6), 0 0 15px var(--gold-glow);
+            transform: translateY(-3px);
+        }
+
+        .prop-card .mini-icon {
+            width: 24px;
+            height: 24px;
+            margin: 0 auto 10px auto;
+        }
+
+        .prop-card .mini-icon svg {
+            width: 100%;
+            height: 100%;
+            stroke: var(--accent-gold);
+            stroke-width: 1.5;
+            fill: none;
+        }
+
+        .prop-main-brand {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 3px;
+            color: var(--text-light);
+            text-transform: uppercase;
+            line-height: 1.2;
+            padding-left: 3px;
+        }
+
+        .prop-project-name {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            margin-top: 4px;
+        }
+
+        .prop-city-subtle {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 8.5px;
+            font-weight: 300;
+            letter-spacing: 1.5px;
+            color: #5d6e82;
+            text-transform: uppercase;
+            margin-top: 2px;
+        }
+
+        .prop-address-height {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 9px;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        .prop-desc {
+            font-size: 8.5px;
+            color: var(--text-muted);
+            margin-top: 10px;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            padding-top: 8px;
+            line-height: 1.35;
+        }
+
+        /* TARJETA INSTITUCIONAL */
+        .card-preview {
+            background: linear-gradient(180deg, rgba(15, 22, 38, 0.6) 0%, rgba(8, 11, 19, 0.6) 100%);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 25px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            width: 100%;
+            max-width: 860px;
+        }
+
+        .card-face {
+            background: #06080e;
+            border: 1px solid #141b2a;
+            border-radius: 10px;
+            padding: 22px 18px;
+            min-height: 170px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+        }
+
+        .card-face.front {
+            border-left: 3px solid var(--accent-gold);
+        }
+
+        .person-name {
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: var(--text-light);
+        }
+
+        .person-role {
+            font-size: 8.5px;
+            font-weight: 600;
+            color: var(--accent-gold);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-top: 3px;
+        }
+
+        .card-contact {
+            font-size: 9.5px;
+            color: var(--text-muted);
+            margin-top: 16px;
+            font-weight: 400;
+        }
+
+        .card-contact div {
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            word-break: break-all;
+        }
+
+        .back-list {
+            list-style: none;
+            font-size: 9px;
+            color: var(--text-muted);
+        }
+
+        .back-list li {
+            margin-bottom: 7px;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px dashed rgba(255,255,255,0.06);
+            padding-bottom: 4px;
+            gap: 8px;
+        }
+
+        .back-list li strong {
+            color: var(--text-light);
+            font-weight: 600;
+            font-size: 8.5px;
+        }
+
+        .back-list li span {
+            color: var(--soft-gold);
+            font-size: 8px;
+            white-space: nowrap;
+        }
+
+        /* REGLAS ESPECÍFICAS PARA MÓVIL (2 POR FILA & CUADROS MÁS PEQUEÑOS) */
+        @media (max-width: 600px) {
+            body {
+                padding: 15px 10px 80px 10px;
+            }
+
+            .brand-presentation {
+                padding: 30px 12px;
+                margin-bottom: 25px;
+                min-height: auto;
+            }
+
+            .brand-icon {
+                width: 44px;
+                height: 44px;
+                margin-bottom: 15px;
+            }
+
+            /* MÓVIL: 2 COLUMNAS Y COMPACTO */
+            .sub-properties {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+                margin-bottom: 30px;
+            }
+
+            .prop-card {
+                padding: 12px 8px;
+                border-radius: 8px;
+            }
+
+            .prop-card .mini-icon {
+                width: 18px;
+                height: 18px;
+                margin-bottom: 6px;
+            }
+
+            .prop-main-brand {
+                font-size: 9px;
+                letter-spacing: 2.5px;
+                padding-left: 2px;
+            }
+
+            .prop-project-name {
+                font-size: 8.5px;
+                letter-spacing: 1px;
+                margin-top: 2px;
+            }
+
+            .prop-city-subtle {
+                font-size: 7.5px;
+                letter-spacing: 1px;
+            }
+
+            .prop-address-height {
+                font-size: 8px;
+                margin-top: 2px;
+            }
+
+            .prop-desc {
+                font-size: 7.5px;
+                margin-top: 6px;
+                padding-top: 5px;
+                line-height: 1.2;
+            }
+
+            .card-preview {
+                padding: 10px;
+            }
+
+            .audio-player-widget {
+                bottom: 15px;
+                right: 50%;
+                transform: translateX(50%);
+                width: calc(100% - 30px);
+                max-width: 250px;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- AUDIO AMBIENTE -->
+    <audio id="bgAudio" autoplay loop preload="auto" playsinline muted>
+        <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- CONTROL FLOTANTE DE AUDIO -->
+    <div class="audio-player-widget" id="audioWidget">
+        <div class="music-btn">
+            <svg id="iconMuted" viewBox="0 0 24 24"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
+            <svg id="iconPlaying" style="display:none;" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+        </div>
+        <span id="musicStatus" class="music-status">Activar Sonido 🎵</span>
+    </div>
+
+    <div class="container">
+        
+        <!-- MARCA MADRE PRINCIPAL (EN ESCRITORIO OCUPI PA AL MENOS 60% DE PANTALLA Y TIPOGRAFÍA FIEL AL ARCHIVO) -->
+        <div class="brand-presentation">
+            <div class="brand-icon">
+                <svg viewBox="0 0 100 100">
+                    <path d="M 70,25 C 40,25 25,40 25,50 C 25,60 40,75 70,75" />
+                    <path d="M 75,35 C 50,35 37,45 37,50 C 37,55 50,65 75,65" />
+                    <line x1="25" y1="50" x2="75" y2="50" stroke-dasharray="2,4" />
+                </svg>
+            </div>
+            
+            <h1 class="brand-title">Copacabana</h1>
+            <div class="brand-tagline">Real Estate & Hospitality</div>
+        </div>
+
+        <!-- PORTAFOLIO DE PROPIEDADES (MÓVIL: 2 X FILA MÁS PEQUEÑOS) -->
+        <div class="section-header">
+            <div class="section-title">Portafolio Unificado de Propiedades</div>
+        </div>
+        
+        <div class="sub-properties">
+            
+            <!-- PROYECTO 1 -->
+            <div class="prop-card">
+                <div>
+                    <div class="mini-icon">
+                        <svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 18h6M9 14h6M9 10h6"/></svg>
+                    </div>
+                    <div class="prop-main-brand">Copacabana</div>
+                    <div class="prop-project-name">Jason</div>
+                    <div class="prop-city-subtle">Pinamar</div>
+                    <div class="prop-address-height">Jason 1091</div>
+                </div>
+                <div class="prop-desc">Departamentos Vacacionales & Locales</div>
+            </div>
+
+            <!-- PROYECTO 2 -->
+            <div class="prop-card">
+                <div>
+                    <div class="mini-icon">
+                        <svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 18h6M9 14h6M9 10h6"/></svg>
+                    </div>
+                    <div class="prop-main-brand">Copacabana</div>
+                    <div class="prop-project-name">54</div>
+                    <div class="prop-city-subtle">La Plata</div>
+                    <div class="prop-address-height">54 1327</div>
+                </div>
+                <div class="prop-desc">Alquiler Temporario Urbano & Locales</div>
+            </div>
+
+            <!-- PROYECTO 3 -->
+            <div class="prop-card">
+                <div>
+                    <div class="mini-icon">
+                        <svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 18h6M9 14h6M9 10h6"/></svg>
+                    </div>
+                    <div class="prop-main-brand">Copacabana</div>
+                    <div class="prop-project-name">Víctor Hugo</div>
+                    <div class="prop-city-subtle">Ostende</div>
+                    <div class="prop-address-height">Av. Víctor Hugo 1217</div>
+                </div>
+                <div class="prop-desc">Departamentos & Comercio</div>
+            </div>
+
+            <!-- PROYECTO 4 -->
+            <div class="prop-card">
+                <div>
+                    <div class="mini-icon">
+                        <svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 18h6M9 14h6M9 10h6"/></svg>
+                    </div>
+                    <div class="prop-main-brand">Copacabana</div>
+                    <div class="prop-project-name">Romero</div>
+                    <div class="prop-city-subtle">Ostende</div>
+                    <div class="prop-address-height">Romero 696</div>
+                </div>
+                <div class="prop-desc">Unidades de Playa & Departamentos Vacacionales</div>
+            </div>
+
+            <!-- PROYECTO 5 -->
+            <div class="prop-card">
+                <div>
+                    <div class="mini-icon">
+                        <svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 18h6M9 14h6M9 10h6"/></svg>
+                    </div>
+                    <div class="prop-main-brand">Copacabana</div>
+                    <div class="prop-project-name">Robette</div>
+                    <div class="prop-city-subtle">Ostende</div>
+                    <div class="prop-address-height">Av. Robette 766</div>
+                </div>
+                <div class="prop-desc">Unidades de Playa & Locales Comerciales</div>
+            </div>
+
+        </div>
+
+        <!-- TARJETA INSTITUCIONAL -->
+        <div class="section-header">
+            <div class="section-title">Estructura de Tarjeta de Presentación</div>
+        </div>
+        
+        <div class="card-preview">
+            
+            <!-- Frente -->
+            <div class="card-face front">
+                <div>
+                    <div style="font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 3px; color: var(--text-light); text-transform: uppercase;">Copacabana</div>
+                    <div style="font-size: 7px; font-weight: 500; letter-spacing: 2px; color: var(--accent-gold); text-transform: uppercase; margin-top: 2px;">Real Estate & Hospitality</div>
+                </div>
+                
+                <div style="margin-top: 14px;">
+                    <div class="person-name">Hilda Cárdenas Castro</div>
+                    <div class="person-role">Dirección General</div>
+                </div>
+
+                <div class="card-contact">
+                    <div>📱 +54 9 221 314 1017</div>
+                    <div>✉️ hildacardenascastro@gmail.com</div>
+                </div>
+            </div>
+
+            <!-- Dorso -->
+            <div class="card-face">
+                <div style="font-size: 8px; font-weight: 600; letter-spacing: 1.5px; color: var(--accent-gold); text-transform: uppercase; margin-bottom: 8px; border-bottom: 1px solid rgba(197, 160, 89, 0.2); padding-bottom: 4px;">
+                    Directorio de Propiedades
+                </div>
+                
+                <ul class="back-list">
+                    <li><strong>Copacabana Jason 1091</strong> <span>Pinamar</span></li>
+                    <li><strong>Copacabana 54 1327</strong> <span>La Plata</span></li>
+                    <li><strong>Copacabana Víctor Hugo 1217</strong> <span>Ostende</span></li>
+                    <li><strong>Copacabana Romero 696</strong> <span>Ostende</span></li>
+                    <li><strong>Copacabana Robette 766</strong> <span>Ostende</span></li>
+                </ul>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- SCRIPT DE CONTROL DE AUDIO -->
+    <script>
+        const bgAudio = document.getElementById('bgAudio');
+        const audioWidget = document.getElementById('audioWidget');
+        const iconMuted = document.getElementById('iconMuted');
+        const iconPlaying = document.getElementById('iconPlaying');
+        const musicStatus = document.getElementById('musicStatus');
+
+        bgAudio.volume = 0.35;
+
+        bgAudio.play().then(() => {
+            bgAudio.muted = false;
+            updateUI(true);
+        }).catch(() => {
+            const enableSoundOnInteraction = () => {
+                bgAudio.muted = false;
+                bgAudio.play();
+                updateUI(true);
+                removeInteractionListeners();
+            };
+
+            function removeInteractionListeners() {
+                window.removeEventListener('scroll', enableSoundOnInteraction);
+                window.removeEventListener('mousemove', enableSoundOnInteraction);
+                window.removeEventListener('touchstart', enableSoundOnInteraction);
+                window.removeEventListener('click', enableSoundOnInteraction);
+            }
+
+            window.addEventListener('scroll', enableSoundOnInteraction, { once: true });
+            window.addEventListener('mousemove', enableSoundOnInteraction, { once: true });
+            window.addEventListener('touchstart', enableSoundOnInteraction, { once: true });
+            window.addEventListener('click', enableSoundOnInteraction, { once: true });
+        });
+
+        function updateUI(isPlaying) {
+            if (isPlaying && !bgAudio.muted) {
+                iconMuted.style.display = 'none';
+                iconPlaying.style.display = 'block';
+                musicStatus.textContent = 'Audio Activo 🎶';
+                musicStatus.style.color = 'var(--soft-gold)';
+            } else {
+                iconMuted.style.display = 'block';
+                iconPlaying.style.display = 'none';
+                musicStatus.textContent = 'Activar Sonido 🎵';
+                musicStatus.style.color = 'var(--accent-gold)';
+            }
+        }
+
+        audioWidget.addEventListener('click', () => {
+            if (bgAudio.paused || bgAudio.muted) {
+                bgAudio.muted = false;
+                bgAudio.play();
+                updateUI(true);
+            } else {
+                bgAudio.pause();
+                updateUI(false);
+            }
+        });
+    </script>
+</body>
+</html>
