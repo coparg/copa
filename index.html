@@ -119,7 +119,7 @@
         .gallery-grid img { width: 100%; height: 120px; object-fit: cover; border-radius: 8px; border: 1px solid var(--border-color); cursor: pointer; transition: transform 0.2s ease, border-color 0.2s ease; }
         .gallery-grid img:hover { transform: scale(1.03); border-color: var(--accent-gold); }
 
-        /* LIGHTBOX PARA VER FOTO AMPLIADA EN FULLSCREEN */
+        /* LIGHTBOX PARA VER FOTO AMPLIADA */
         .lightbox { display: none; position: fixed; z-index: 20000; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.95); justify-content: center; align-items: center; cursor: zoom-out; }
         .lightbox img { max-width: 90%; max-height: 90%; border-radius: 8px; box-shadow: 0 0 30px rgba(0, 0, 0, 0.8); border: 1px solid var(--border-gold); }
 
@@ -148,14 +148,12 @@
         <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3" type="audio/mpeg">
     </audio>
 
-    <!-- BOTÓN FLOTANTE DE WHATSAPP -->
     <a href="https://wa.me/5492213141017?text=Hola,%20quisiera%20consultar%20por%20las%20propiedades%20de%20Copacabana." class="whatsapp-widget" target="_blank" rel="noopener noreferrer" title="Consultar por WhatsApp">
         <svg viewBox="0 0 32 32">
             <path d="M16 2a13 13 0 0 0-11.2 19.6L3 29l7.6-1.7A13 13 0 1 0 16 2zm0 23.6a10.5 10.5 0 0 1-5.3-1.4l-.4-.2-4.5 1 1-4.4-.3-.4A10.6 10.6 0 1 1 16 25.6zm5.8-7.9c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-.9 1.2-.3.2-.6.1a8.1 8.1 0 0 1-2.4-1.5 8.9 8.9 0 0 1-1.7-2.1c-.2-.3 0-.5.1-.6l.4-.5c.2-.2.2-.4.3-.6a.5.5 0 0 0 0-.5c0-.2-.7-1.7-1-2.3-.2-.6-.5-.5-.7-.5h-.6a1.2 1.2 0 0 0-.9.4 3.7 3.7 0 0 0-1.1 2.7 6.4 6.4 0 0 0 1.3 3.4 14.6 14.6 0 0 0 5.6 5c2.1.9 2.5.7 3 .7a2.5 2.5 0 0 0 1.7-1.2 2 2 0 0 0 .1-1.2c-.1-.2-.4-.3-.7-.5z"/>
         </svg>
     </a>
 
-    <!-- CONTROL FLOTANTE DE AUDIO -->
     <div class="audio-player-widget" id="audioWidget">
         <div class="music-btn">
             <svg id="iconMuted" viewBox="0 0 24 24"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
@@ -181,104 +179,8 @@
             <div class="section-title">Portafolio Unificado de Propiedades</div>
         </div>
         
-        <div class="sub-properties">
-            <!-- COPACABANA JASON CON ÁLBUMES CATEGORIZADOS -->
-            <div class="prop-card" onclick="openGallery('Jason', 'Pinamar', [
-                {
-                    title: 'Departamento 1 Dormitorio',
-                    images: [
-                        '/img/PHOTO-2026-01-22-16-23-58.jpg',
-                        '/img/PHOTO-2026-01-22-16-23-58%202.jpg',
-                        '/img/PHOTO-2026-01-22-16-23-58%203.jpg',
-                        '/img/PHOTO-2026-01-22-16-23-58%204.jpg',
-                        '/img/PHOTO-2026-01-22-16-23-58%205.jpg'
-                    ]
-                },
-                {
-                    title: 'Departamento 2 Dormitorios',
-                    images: [
-                        '/img/PHOTO-2026-01-22-16-23-58%206.jpg',
-                        '/img/PHOTO-2026-01-22-16-23-58%207.jpg',
-                        '/img/PHOTO-2026-01-22-16-23-58%208.jpg',
-                        '/img/PHOTO-2026-01-22-16-23-58%209.jpg',
-                        '/img/PHOTO-2026-01-22-16-23-58%2010.jpg'
-                    ]
-                }
-            ])">
-                <div>
-                    <div class="mini-icon"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 18h6M9 14h6M9 10h6"/></svg></div>
-                    <div class="prop-main-brand">Copacabana</div>
-                    <div class="prop-project-name">Jason</div>
-                    <div class="prop-city-subtle">Pinamar</div>
-                    <div class="prop-address-height">Jason 1091</div>
-                </div>
-                <div class="prop-desc">Departamentos Vacacionales & Locales</div>
-            </div>
-
-            <div class="prop-card" onclick="openGallery('54', 'La Plata', [
-                {
-                    title: 'Vista General',
-                    images: ['https://picsum.photos/400/300?random=3']
-                }
-            ])">
-                <div>
-                    <div class="mini-icon"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 18h6M9 14h6M9 10h6"/></svg></div>
-                    <div class="prop-main-brand">Copacabana</div>
-                    <div class="prop-project-name">54</div>
-                    <div class="prop-city-subtle">La Plata</div>
-                    <div class="prop-address-height">54 1327</div>
-                </div>
-                <div class="prop-desc">Alquiler Temporario Urbano & Locales</div>
-            </div>
-
-            <div class="prop-card" onclick="openGallery('Víctor Hugo', 'Ostende', [
-                {
-                    title: 'Fotos de la Propiedad',
-                    images: ['https://picsum.photos/400/300?random=4']
-                }
-            ])">
-                <div>
-                    <div class="mini-icon"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 18h6M9 14h6M9 10h6"/></svg></div>
-                    <div class="prop-main-brand">Copacabana</div>
-                    <div class="prop-project-name">Víctor Hugo</div>
-                    <div class="prop-city-subtle">Ostende</div>
-                    <div class="prop-address-height">Av. Víctor Hugo 1217</div>
-                </div>
-                <div class="prop-desc">Departamentos & Comercio</div>
-            </div>
-
-            <div class="prop-card" onclick="openGallery('Romero', 'Ostende', [
-                {
-                    title: 'Fotos de la Propiedad',
-                    images: ['https://picsum.photos/400/300?random=5']
-                }
-            ])">
-                <div>
-                    <div class="mini-icon"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 18h6M9 14h6M9 10h6"/></svg></div>
-                    <div class="prop-main-brand">Copacabana</div>
-                    <div class="prop-project-name">Romero</div>
-                    <div class="prop-city-subtle">Ostende</div>
-                    <div class="prop-address-height">Romero 696</div>
-                </div>
-                <div class="prop-desc">Unidades de Playa & Departamentos Vacacionales</div>
-            </div>
-
-            <div class="prop-card" onclick="openGallery('Robette', 'Ostende', [
-                {
-                    title: 'Fotos de la Propiedad',
-                    images: ['https://picsum.photos/400/300?random=6']
-                }
-            ])">
-                <div>
-                    <div class="mini-icon"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 18h6M9 14h6M9 10h6"/></svg></div>
-                    <div class="prop-main-brand">Copacabana</div>
-                    <div class="prop-project-name">Robette</div>
-                    <div class="prop-city-subtle">Ostende</div>
-                    <div class="prop-address-height">Av. Robette 766</div>
-                </div>
-                <div class="prop-desc">Unidades de Playa & Locales Comerciales</div>
-            </div>
-        </div>
+        <!-- CONTENEDOR DE TARJETAS (CARGADO DINÁMICAMENTE) -->
+        <div class="sub-properties" id="propertiesContainer"></div>
 
         <div class="section-header">
             <div class="section-title">Estructura de Tarjeta de Presentación</div>
@@ -318,12 +220,70 @@
         </div>
     </div>
 
-    <!-- LIGHTBOX PARA VER FOTO EN GRANDE -->
+    <!-- LIGHTBOX PARA AMPLIAR IMÁGENES -->
     <div id="lightbox" class="lightbox" onclick="closeLightbox()">
         <img id="lightboxImg" src="" alt="Vista ampliada">
     </div>
 
     <script>
+        let propertiesData = [];
+
+        // Cargamos los datos del JSON para evitar errores de sintaxis en HTML
+        fetch('/data/properties.json')
+            .then(res => res.json())
+            .then(data => {
+                propertiesData = data;
+                renderProperties();
+            })
+            .catch(err => console.error('Error cargando las propiedades:', err));
+
+        function renderProperties() {
+            const container = document.getElementById('propertiesContainer');
+            container.innerHTML = propertiesData.map((prop, idx) => `
+                <div class="prop-card" onclick="openGallery(${idx})">
+                    <div>
+                        <div class="mini-icon"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 18h6M9 14h6M9 10h6"/></svg></div>
+                        <div class="prop-main-brand">Copacabana</div>
+                        <div class="prop-project-name">${prop.name}</div>
+                        <div class="prop-city-subtle">${prop.city}</div>
+                        <div class="prop-address-height">${prop.address}</div>
+                    </div>
+                    <div class="prop-desc">${prop.description}</div>
+                </div>
+            `).join('');
+        }
+
+        function openGallery(index) {
+            const prop = propertiesData[index];
+            document.getElementById('modalTitle').textContent = `${prop.title} — ${prop.city}`;
+            const container = document.getElementById('modalAlbums');
+            
+            container.innerHTML = prop.albums.map(album => `
+                <div class="album-section">
+                    <h4 class="album-title">${album.title}</h4>
+                    <div class="gallery-grid">
+                        ${album.images.map(img => `<img src="${img}" alt="${album.title}" onclick="zoomImage('${img}')">`).join('')}
+                    </div>
+                </div>
+            `).join('');
+            
+            document.getElementById('galleryModal').style.display = 'flex';
+        }
+
+        function closeGallery() {
+            document.getElementById('galleryModal').style.display = 'none';
+        }
+
+        function zoomImage(src) {
+            document.getElementById('lightboxImg').src = src;
+            document.getElementById('lightbox').style.display = 'flex';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+        }
+
+        // Control de Audio
         const bgAudio = document.getElementById('bgAudio');
         const audioWidget = document.getElementById('audioWidget');
         const iconMuted = document.getElementById('iconMuted');
@@ -347,37 +307,6 @@
             if (bgAudio.paused || bgAudio.muted) { bgAudio.muted = false; bgAudio.play(); updateUI(true); } 
             else { bgAudio.pause(); updateUI(false); }
         });
-
-        /* FUNCIÓN DE GALERÍA CON ÁLBUMES Y TÍTULOS */
-        function openGallery(name, city, albums) {
-            document.getElementById('modalTitle').textContent = `Copacabana ${name} — ${city}`;
-            const container = document.getElementById('modalAlbums');
-            
-            container.innerHTML = albums.map(album => `
-                <div class="album-section">
-                    <h4 class="album-title">${album.title}</h4>
-                    <div class="gallery-grid">
-                        ${album.images.map(img => `<img src="${img}" alt="${album.title}" onclick="zoomImage('${img}')">`).join('')}
-                    </div>
-                </div>
-            `).join('');
-            
-            document.getElementById('galleryModal').style.display = 'flex';
-        }
-
-        function closeGallery() {
-            document.getElementById('galleryModal').style.display = 'none';
-        }
-
-        /* FUNCIONES DEL LIGHTBOX (AMPLIAR FOTO) */
-        function zoomImage(src) {
-            document.getElementById('lightboxImg').src = src;
-            document.getElementById('lightbox').style.display = 'flex';
-        }
-
-        function closeLightbox() {
-            document.getElementById('lightbox').style.display = 'none';
-        }
 
         if (window.netlifyIdentity) {
             window.netlifyIdentity.on("init", user => {
