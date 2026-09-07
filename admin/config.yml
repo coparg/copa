@@ -2,7 +2,7 @@ backend:
   name: github
   repo: coparg/copa
   branch: main
-  base_url: https://sveltia-cms-auth.sveltia.dev
+  base_url: https://copa-auth.copacabanapinamar.workers.dev
 
 media_folder: "assets/images/uploads"
 public_folder: "assets/images/uploads"
