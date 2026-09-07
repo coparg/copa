@@ -1,1 +1,98 @@
-
+[
+  {
+    "id": "jason",
+    "title": "Copacabana Jason",
+    "name": "Jason",
+    "city": "Pinamar",
+    "address": "Jason 1091",
+    "description": "Departamentos Vacacionales & Locales",
+    "albums": [
+      {
+        "title": "Áreas Comunes",
+        "images": [
+          "/img/PHOTO-2026-01-22-16-23-58.jpg",
+          "/img/PHOTO-2026-01-22-16-23-58 2.jpg"
+        ]
+      },
+      {
+        "title": "Departamentos",
+        "images": [
+          "/img/PHOTO-2026-01-22-16-23-58 3.jpg",
+          "/img/PHOTO-2026-01-22-16-23-58 4.jpg",
+          "/img/PHOTO-2026-01-22-16-23-58 5.jpg"
+        ]
+      },
+      {
+        "title": "Exterior",
+        "images": [
+          "/img/PHOTO-2026-01-22-16-23-58 6.jpg",
+          "/img/PHOTO-2026-01-22-16-23-58 7.jpg"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "54",
+    "title": "Copacabana 54",
+    "name": "54",
+    "city": "La Plata",
+    "address": "54 1327",
+    "description": "Alquiler Temporario Urbano & Locales",
+    "albums": [
+      {
+        "title": "Exterior",
+        "images": [
+          "https://picsum.photos/400/300?random=3"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "victor-hugo",
+    "title": "Copacabana Víctor Hugo",
+    "name": "Víctor Hugo",
+    "city": "Ostende",
+    "address": "Av. Víctor Hugo 1217",
+    "description": "Departamentos & Comercio",
+    "albums": [
+      {
+        "title": "Departamentos",
+        "images": [
+          "https://picsum.photos/400/300?random=4"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "romero",
+    "title": "Copacabana Romero",
+    "name": "Romero",
+    "city": "Ostende",
+    "address": "Romero 696",
+    "description": "Unidades de Playa & Departamentos Vacacionales",
+    "albums": [
+      {
+        "title": "Áreas Comunes",
+        "images": [
+          "https://picsum.photos/400/300?random=5"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "robette",
+    "title": "Copacabana Robette",
+    "name": "Robette",
+    "city": "Ostende",
+    "address": "Av. Robette 766",
+    "description": "Unidades de Playa & Locales Comerciales",
+    "albums": [
+      {
+        "title": "Exterior",
+        "images": [
+          "https://picsum.photos/400/300?random=6"
+        ]
+      }
+    ]
+  }
+]
